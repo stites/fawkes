@@ -425,9 +425,9 @@ def load_extractor(name):
     hash_map = {"extractor_2": "ce703d481db2b83513bbdafa27434703",
                 "extractor_0": "94854151fd9077997d69ceda107f9c6b"}
     assert name in ["extractor_2", 'extractor_0']
-    model_file = pkg_resources.resource_filename("fawkes", "model/{}.h5".format(name))
+    model_file = os.path.join(os.path.expanduser('~'), '.fawkes', "model/{}.h5".format(name))
     cur_hash = hash_map[name]
-    model_dir = pkg_resources.resource_filename("fawkes", "model/")
+    model_dir = os.path.join(os.path.expanduser('~'), '.fawkes', "model")
     os.makedirs(model_dir, exist_ok=True)
     get_file("{}.h5".format(name), "http://mirror.cs.uchicago.edu/fawkes/files/{}.h5".format(name),
              cache_dir=model_dir, cache_subdir='', md5_hash=cur_hash)
